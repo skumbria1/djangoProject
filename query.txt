@@ -1,0 +1,136 @@
+1. Все актеры-мужчины
+
+Запрос:
+Actor.objects.filter(gender='M')
+
+Вывод:
+<QuerySet [<Actor: John Doe>, 
+           <Actor: David Smith>, 
+           <Actor: Michael Brown>, 
+           <Actor: Daniel Davis>, 
+           <Actor: Christopher Lee>
+          ]>
+
+2. Количество спектаклей для каждого актера
+
+Запрос:
+Actor.objects.values('first_name', 'second_name')
+    .annotate(num_plays=Count('plays'))
+
+Вывод:
+<QuerySet [{'first_name': 'Avery', 'second_name': 'Jones', 'num_plays': 4},
+           {'first_name': 'Christopher', 'second_name': 'Lee', 'num_plays': 3},
+           {'first_name': 'Daniel', 'second_name': 'Davis', 'num_plays': 4},
+           {'first_name': 'David', 'second_name': 'Smith', 'num_plays': 3},
+           {'first_name': 'Emily', 'second_name': 'Taylor', 'num_plays': 2},
+           {'first_name': 'Jane', 'second_name': 'Doe', 'num_plays': 3},
+           {'first_name': 'John', 'second_name': 'Doe', 'num_plays': 2},
+           {'first_name': 'Michael', 'second_name': 'Brown', 'num_plays': 0},
+           {'first_name': 'Olivia', 'second_name': 'Wilson', 'num_plays': 2},
+           {'first_name': 'Sarah', 'second_name': 'Johnson', 'num_plays': 5}]>
+
+3. Все спектакли, в которых количество участвующих актеров больше 3
+
+Запрос:
+Play.objects.values('title')
+ .annotate(num_actors=Count('actors'))
+ .filter(num_actors__gt=3)
+
+Вывод:
+<QuerySet [{'title': 'The Betrayal', 'num_actors': 5},
+           {'title': 'The Last Stand', 'num_actors': 5},
+           {'title': 'The Lost Key', 'num_actors': 7},
+           {'title': 'The Price of Freedom', 'num_actors': 6},
+           {'title': 'The Road Not Taken', 'num_actors': 5}]>
+
+4. Сколько женщин играет в каждом спектакле
+
+Запрос:
+Play.objects.values('title')
+    .annotate(num_female_actors=Count('actors', filter=Q(actors__gender='F')))
+
+Вывод:
+<QuerySet [{'title': 'The Betrayal', 'num_female_actors': 4},
+           {'title': 'The Last Stand', 'num_female_actors': 2},
+           {'title': 'The Lost Key', 'num_female_actors': 5},
+           {'title': 'The Price of Freedom', 'num_female_actors': 2},
+           {'title': 'The Road Not Taken', 'num_female_actors': 3}]>
+
+5. Сколько актеров в каждой творческой группе
+
+Запрос:
+CreativeTeam.objects.values('name').annotate(num_actors=Count('actors'))
+
+Вывод:
+<QuerySet [{'name': 'Alpha', 'num_actors': 4},
+           {'name': 'Beta', 'num_actors': 3},
+           {'name': 'Gamma', 'num_actors': 3}]>
+
+6. Актеры без спектаклей
+
+Запрос:
+Actor.objects.values('first_name', 'second_name').filter(plays__exact=None)
+
+Вывод:
+<QuerySet [{'first_name': 'Michael', 'second_name': 'Brown'}]>
+
+7. Спектакли с датой премьеры после сегодняшнего дня с количеством актеров
+больше 5
+
+Запрос:
+Play.objects.values('title', 'premiere_date')
+    .annotate(num_actors=Count('actors'))
+    .filter(premiere_date__gt=timezone.now().date())
+    .filter(num_actors__gt=5)
+
+Вывод:
+<QuerySet [{'title': 'The Lost Key',
+            'premiere_date': datetime.date(2023, 5, 31),
+            'num_actors': 7}]>
+
+8. Творческие группы по каждому спектаклю
+
+Запрос:
+Play.objects.values('title', team_name=F('actors__creativeteam__name'))
+    .distinct()
+
+Вывод:
+<QuerySet [{'title': 'The Last Stand', 'team_name': 'Alpha'},
+           {'title': 'The Last Stand', 'team_name': 'Beta'},
+           {'title': 'The Last Stand', 'team_name': 'Gamma'},
+           {'title': 'The Lost Key', 'team_name': 'Alpha'},
+           {'title': 'The Lost Key', 'team_name': 'Beta'},
+           {'title': 'The Lost Key', 'team_name': 'Gamma'},
+           {'title': 'The Betrayal', 'team_name': 'Alpha'},
+           {'title': 'The Betrayal', 'team_name': 'Gamma'},
+           {'title': 'The Road Not Taken', 'team_name': 'Alpha'},
+           {'title': 'The Road Not Taken', 'team_name': 'Beta'},
+           {'title': 'The Road Not Taken', 'team_name': 'Gamma'},
+           {'title': 'The Price of Freedom', 'team_name': 'Alpha'},
+           {'title': 'The Price of Freedom', 'team_name': 'Beta'},
+           {'title': 'The Price of Freedom', 'team_name': 'Gamma'}]>
+
+9. В каких еще спектаклях до сегодняшнего дня принимали участие актеры,
+которые сыграют в 'The Road Not Taken'
+
+Запрос:
+actors_in_theroadnottaken = Actor.objects
+    .filter(plays__title__exact='The Road Not Taken')
+Play.objects.values('title', 'premiere_date')
+    .filter(actors__in=actors_in_theroadnottaken)
+    .filter(premiere_date__lt=timezone.now().date())
+    .distinct()
+
+Вывод:
+<QuerySet [
+    {'title': 'The Price of Freedom', 'premiere_date': datetime.date(2023, 3, 30)},
+    {'title': 'The Last Stand', 'premiere_date': datetime.date(2023, 5, 4)},
+    {'title': 'The Betrayal', 'premiere_date': datetime.date(2023, 2, 28)}]>
+
+10. Актеры с буквой 's' в имени (независимо от регистра)
+
+Запрос:
+Actor.objects.filter(first_name__icontains='s')
+
+Вывод:
+<QuerySet [<Actor: Sarah Johnson>, <Actor: Christopher Lee>]>
