@@ -27,8 +27,8 @@
                         <li class="nav-item">
                             <a class="nav-link active"
                                aria-current="page"
-                               href="{% url 'core:actors' %}">
-                                Домашняя страница
+                               href="http://127.0.0.1:8000//admin/">
+                                Admin
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -36,7 +36,7 @@
                                href="#" role="button"
                                data-bs-toggle="dropdown"
                                aria-expanded="false">
-                            Dropdown link
+                            Просмотр
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -85,6 +85,22 @@
                                     <a class="dropdown-item"
                                        href="{% url 'core:plays_f' %}">
                                         Спектакли (функция)
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                               href="#" role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                            Добавить
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="{% url 'core:actor_create' %}">
+                                        Актера
                                     </a>
                                 </li>
                             </ul>

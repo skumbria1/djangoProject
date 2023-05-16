@@ -2,21 +2,31 @@
 {% block content %}
     <body>
         <h1>Список актеров</h1>
-        <h2>Всего актеров: {{ actors.count }}</h2>
+        <form method="get">
+            {{ form }}
+            <button type="submit">Поиск</button>
+        </form>
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Обновление</th>
                     <th scope="col">Имя</th>
                     <th scope="col">Фамилия</th>
                     <th scope="col">Пол</th>
                     <th scope="col">ID актера</th>
                     <th scope="col">Творческая группа</th>
                     <th scope="col">Спектакли</th>
+                    <th scope="col">Удаление</th>
                 </tr>
             </thead>
             <tbody>
                 {% for actor in actors %}
                     <tr>
+                        <td>
+                            <a href="{% url 'core:actor_update' actor.pk %}">
+                                Обновить
+                            </a>
+                        </td>
                         <td>{{ actor.first_name }}</td>
                         <td>{{ actor.second_name }}</td>
                         <td>{{ actor.gender }}</td>
@@ -28,6 +38,11 @@
                                 {% if not forloop.last %}, {% endif %}
                             {% endfor %}
                         </td>
+                    <td>
+                        <a href="{% url 'core:actor_delete' actor.pk %}">
+                            Удалить
+                        </a>
+                    </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -26,17 +26,31 @@ class ActorId(models.Model):
 
 
 class Actor(models.Model):
-    GENDER_CHOICE = (
+    GENDER_CHOICES = (
         ('M', 'Мужской'),
         ('F', 'Женский'),
     )
     first_name = models.CharField('Имя', max_length=255)
     second_name = models.CharField('Фамилия', max_length=255)
-    gender = models.CharField('Пол', max_length=255, choices=GENDER_CHOICE,
-                              default=GENDER_CHOICE[0])
-    actorid = models.OneToOneField(ActorId, on_delete=models.CASCADE, null=True)
-    creativeteam = models.ForeignKey(CreativeTeam, on_delete=models.CASCADE,
-                                     null=True, related_name='actors')
+    gender = models.CharField(
+        'Пол',
+        max_length=255,
+        choices=GENDER_CHOICES,
+        default=GENDER_CHOICES[0]
+    )
+    actorid = models.OneToOneField(
+        ActorId,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    creativeteam = models.ForeignKey(
+        CreativeTeam,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='actors'
+    )
     plays = models.ManyToManyField(Play, blank=True, related_name='actors')
 
     def __str__(self):

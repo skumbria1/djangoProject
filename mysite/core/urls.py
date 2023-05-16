@@ -14,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
 from . import views
@@ -23,7 +22,6 @@ from . import views
 app_name = 'core'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/actors/')),
     path('actors/', views.ActorList.as_view(), name='actors'),
     path('actors_f/', views.get_actor_list, name='actors_f'),
@@ -51,4 +49,15 @@ urlpatterns = [
     ),
     path('plays/', views.PlayList.as_view(), name='plays'),
     path('plays_f/', views.get_play_list, name='plays_f'),
+    path('actor_create/', views.ActorCreate.as_view(), name='actor_create'),
+    path(
+        'actor_update/<int:pk>',
+        views.ActorUpdate.as_view(),
+        name='actor_update'
+    ),
+    path(
+        'actor_delete/<int:pk>',
+        views.ActorDelete.as_view(),
+        name='actor_delete'
+    ),
 ]
