@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from . import models
+from core import models
 
 ONLY_LETTERS_VALIDATOR = RegexValidator(
     regex=r'^[a-zA-Z]*$',
