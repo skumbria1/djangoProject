@@ -14,22 +14,47 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ActorId',
             fields=[
-                ('number', models.CharField(max_length=255, primary_key=True, serialize=False, unique=True, verbose_name='Номер')),
+                ('number', models.CharField(
+                    max_length=255,
+                    primary_key=True,
+                    serialize=False,
+                    unique=True,
+                    verbose_name='Номер'
+                )),
             ],
         ),
         migrations.CreateModel(
             name='CreativeTeam',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Название группы')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                )),
+                ('name', models.CharField(
+                    max_length=255,
+                    verbose_name='Название группы'
+                )),
             ],
         ),
         migrations.CreateModel(
             name='Play',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255, verbose_name='Название')),
-                ('premiere_date', models.DateField(verbose_name='Дата премьеры')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID'
+                )),
+                ('title', models.CharField(
+                    max_length=255,
+                    verbose_name='Название'
+                )),
+                (
+                    'premiere_date',
+                    models.DateField(verbose_name='Дата премьеры')
+                ),
             ],
         ),
         migrations.RemoveField(
@@ -39,7 +64,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='actor',
             name='gender',
-            field=models.CharField(choices=[('M', 'Мужской'), ('F', 'Женский')], default=('M', 'Мужской'), max_length=255, verbose_name='Пол'),
+            field=models.CharField(
+                choices=[('M', 'Мужской'), ('F', 'Женский')],
+                default=('M', 'Мужской'),
+                max_length=255,
+                verbose_name='Пол'
+            ),
         ),
         migrations.AlterField(
             model_name='actor',
@@ -54,12 +84,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='actor',
             name='actorid',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.actorid'),
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE, to='core.actorid'
+            ),
         ),
         migrations.AddField(
             model_name='actor',
             name='creativeteam',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.creativeteam'),
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to='core.creativeteam'
+            ),
         ),
         migrations.AddField(
             model_name='actor',

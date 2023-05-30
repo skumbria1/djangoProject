@@ -79,7 +79,8 @@ class ActorTest(TestCase):
             'gender': 'F',
         }
         response = self.client.post(
-            path=reverse('core:actor_update', args=(self.actor.pk,)), data=data,
+            path=reverse('core:actor_update', args=(self.actor.pk,)),
+            data=data,
             follow=True,
         )
         self.assertEqual(response.status_code, 200)

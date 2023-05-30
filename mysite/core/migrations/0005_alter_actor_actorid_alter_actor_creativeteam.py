@@ -14,11 +14,22 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='actor',
             name='actorid',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='core.actorid'),
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to='core.actorid'
+            ),
         ),
         migrations.AlterField(
             model_name='actor',
             name='creativeteam',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='actors', to='core.creativeteam'),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='actors',
+                to='core.creativeteam'
+            ),
         ),
     ]
