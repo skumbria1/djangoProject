@@ -27,7 +27,7 @@ jobs:
 
       - name: Run tests
         run: |
-          python manage.py test core
+          python mysite/manage.py test core
 
       - name: Run flake8
         run: |
