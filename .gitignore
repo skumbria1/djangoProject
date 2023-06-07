@@ -1,9 +1,11 @@
+.idea
+
 # Django #
 *.log
 *.pot
 *.pyc
 __pycache__
-# db.sqlite3
+db.sqlite3
 media
 
 # Backup files #
@@ -140,4 +142,4 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 .history
 
-.idea
+.idea!/mysite/db.sqlite3
