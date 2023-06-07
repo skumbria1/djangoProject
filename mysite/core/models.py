@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import ValidationError
 
 
 class CreativeTeam(models.Model):
@@ -6,6 +7,11 @@ class CreativeTeam(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Творческая группа'
+        verbose_name_plural = 'Творческие группы'
+        ordering = ('name',)
 
 
 class Play(models.Model):
@@ -15,14 +21,25 @@ class Play(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+    class Meta:
+        verbose_name = 'Спектакль'
+        verbose_name_plural = 'Спектакли'
+        ordering = ('title',)
+
 
 class ActorId(models.Model):
-    number = models.CharField('Номер', max_length=255, unique=True,
-                              primary_key=True)
+    number = models.CharField(
+        'Номер', max_length=255, unique=True, primary_key=True
+    )
     photo = models.CharField('Фото', max_length=255, null=True)
 
     def __str__(self):
         return f'{self.number}'
+
+    class Meta:
+        verbose_name = 'ID-карта'
+        verbose_name_plural = 'ID-карты'
+        ordering = ('number',)
 
 
 class Actor(models.Model):
@@ -55,3 +72,12 @@ class Actor(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.second_name}'
+
+    def clean(self):
+        if self.plays is None:
+            raise ValidationError('Plays cannot be None')
+
+    class Meta:
+        verbose_name = 'Актер'
+        verbose_name_plural = 'Актеры'
+        ordering = ('actorid',)
