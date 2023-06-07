@@ -44,6 +44,8 @@ urlpatterns = [
         'creative_teams/', views.CreativeTeamList.as_view(),
         name='creative_teams'
     ),
+
     path('plays/', views.PlayList.as_view(), name='plays'),
+    path('play_create/', views.PlayCreate.as_view(), name='play_create')
 
 ]

@@ -39,6 +39,12 @@ class ActorCreate(CreateView):
     success_url = reverse_lazy('core:actors')
 
 
+class PlayCreate(CreateView):
+    model = models.Play
+    template_name = 'core/play_create.html'
+    form_class = forms.PlayForm
+    success_url = reverse_lazy('core:plays')
+
 class ActorUpdate(UpdateView):
     model = models.Actor
     template_name = 'core/actor_update.html'
