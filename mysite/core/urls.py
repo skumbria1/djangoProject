@@ -23,28 +23,27 @@ app_name = 'core'
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/actors/')),
+
     path('actors/', views.ActorList.as_view(), name='actors'),
     path(
-        'actor_detail/<int:pk>',
-        views.ActorDetail.as_view(),
+        'actor_detail/<int:pk>', views.ActorDetail.as_view(),
         name='actor_detail'
     ),
     path('actor_ids/', views.ActorIdList.as_view(), name='actor_ids'),
-    path(
-        'creative_teams/',
-        views.CreativeTeamList.as_view(),
-        name='creative_teams'
-    ),
-    path('plays/', views.PlayList.as_view(), name='plays'),
     path('actor_create/', views.ActorCreate.as_view(), name='actor_create'),
     path(
-        'actor_update/<int:pk>',
-        views.ActorUpdate.as_view(),
+        'actor_update/<int:pk>', views.ActorUpdate.as_view(),
         name='actor_update'
     ),
     path(
-        'actor_delete/<int:pk>',
-        views.ActorDelete.as_view(),
+        'actor_delete/<int:pk>', views.ActorDelete.as_view(),
         name='actor_delete'
     ),
+
+    path(
+        'creative_teams/', views.CreativeTeamList.as_view(),
+        name='creative_teams'
+    ),
+    path('plays/', views.PlayList.as_view(), name='plays'),
+
 ]
