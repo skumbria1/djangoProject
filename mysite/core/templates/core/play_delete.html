@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <form action="{% url 'core:play_delete' play.pk %}"
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>Удалить {{ play }}?</p>
+        <button type="submit">Удалить</button>
+    </form>
+{% endblock %}

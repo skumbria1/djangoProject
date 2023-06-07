@@ -39,11 +39,7 @@ class ActorCreate(CreateView):
     success_url = reverse_lazy('core:actors')
 
 
-class PlayCreate(CreateView):
-    model = models.Play
-    template_name = 'core/play_create.html'
-    form_class = forms.PlayForm
-    success_url = reverse_lazy('core:plays')
+
 
 class ActorUpdate(UpdateView):
     model = models.Actor
@@ -56,6 +52,8 @@ class ActorDelete(DeleteView):
     model = models.Actor
     template_name = 'core/actor_delete.html'
     success_url = reverse_lazy('core:actors')
+
+
 
 
 class ActorDetail(DetailView):
@@ -76,7 +74,29 @@ class PlayList(ListView):
     context_object_name = 'plays'
 
 
+class PlayCreate(CreateView):
+    model = models.Play
+    template_name = 'core/play_create.html'
+    form_class = forms.PlayForm
+    success_url = reverse_lazy('core:plays')
+
+
+class PlayDelete(DeleteView):
+    model = models.Play
+    template_name = 'core/play_delete.html'
+    success_url = reverse_lazy('core:plays')
+
+
+class PlayUpdate(UpdateView):
+    model = models.Play
+    template_name = 'core/play_update.html'
+    form_class = forms.PlayForm
+    success_url = reverse_lazy('core:plays')
+
+
 class CreativeTeamList(ListView):
     model = models.CreativeTeam
     template_name = 'core/creative_teams.html'
     context_object_name = 'creative_teams'
+
+
