@@ -5,7 +5,7 @@ class CreativeTeam(models.Model):
     name = models.CharField('Название группы', max_length=255)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}'
 
 
 class Play(models.Model):
@@ -13,7 +13,7 @@ class Play(models.Model):
     premiere_date = models.DateField('Дата премьеры')
 
     def __str__(self):
-        return self.title
+        return f'{self.title}'
 
 
 class ActorId(models.Model):
@@ -22,7 +22,7 @@ class ActorId(models.Model):
     photo = models.CharField('Фото', max_length=255, null=True)
 
     def __str__(self):
-        return self.number
+        return f'{self.number}'
 
 
 class Actor(models.Model):
