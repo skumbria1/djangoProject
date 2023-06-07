@@ -69,12 +69,6 @@ class ActorForm(forms.ModelForm):
 
 
 class PlayForm(forms.ModelForm):
-    # title = forms.CharField(
-    #     label='Название'
-    # )
-    # premiere_date = forms.DateField(
-    #     required=True
-    # )
     class Meta:
         model = models.Play
         fields = '__all__'
