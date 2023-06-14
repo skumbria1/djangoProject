@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import ValidationError
 
 
 class CreativeTeam(models.Model):
