@@ -39,8 +39,6 @@ class ActorCreate(CreateView):
     success_url = reverse_lazy('core:actors')
 
 
-
-
 class ActorUpdate(UpdateView):
     model = models.Actor
     template_name = 'core/actor_update.html'
@@ -52,8 +50,6 @@ class ActorDelete(DeleteView):
     model = models.Actor
     template_name = 'core/actor_delete.html'
     success_url = reverse_lazy('core:actors')
-
-
 
 
 class ActorDetail(DetailView):
@@ -98,5 +94,3 @@ class CreativeTeamList(ListView):
     model = models.CreativeTeam
     template_name = 'core/creative_teams.html'
     context_object_name = 'creative_teams'
-
-

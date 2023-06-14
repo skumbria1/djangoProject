@@ -143,4 +143,3 @@ GitHub.sublime-settings
 .history
 
 .idea!/mysite/db.sqlite3
-!/mysite/mysite/secret_key.txt
