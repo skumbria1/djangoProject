@@ -47,6 +47,10 @@ urlpatterns = [
 
     path('plays/', views.PlayList.as_view(), name='plays'),
     path('play_create/', views.PlayCreate.as_view(), name='play_create'),
-    path('play_update/<int:pk>', views.PlayUpdate.as_view(), name='play_update'),
-    path('play_delete/<int:pk>', views.PlayDelete.as_view(), name='play_delete'),
+    path(
+        'play_update/<int:pk>', views.PlayUpdate.as_view(), name='play_update'
+    ),
+    path(
+        'play_delete/<int:pk>', views.PlayDelete.as_view(), name='play_delete'
+    ),
 ]

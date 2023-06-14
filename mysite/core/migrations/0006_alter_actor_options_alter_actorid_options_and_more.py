@@ -12,18 +12,34 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='actor',
-            options={'ordering': ('actorid',), 'verbose_name': 'Актер', 'verbose_name_plural': 'Актеры'},
+            options={
+                'ordering': ('actorid',),
+                'verbose_name': 'Актер',
+                'verbose_name_plural': 'Актеры'
+            },
         ),
         migrations.AlterModelOptions(
             name='actorid',
-            options={'ordering': ('number',), 'verbose_name': 'ID-карта', 'verbose_name_plural': 'ID-карты'},
+            options={
+                'ordering': ('number',),
+                'verbose_name': 'ID-карта',
+                'verbose_name_plural': 'ID-карты'
+            },
         ),
         migrations.AlterModelOptions(
             name='creativeteam',
-            options={'ordering': ('name',), 'verbose_name': 'Творческая группа', 'verbose_name_plural': 'Творческие группы'},
+            options={
+                'ordering': ('name',),
+                'verbose_name': 'Творческая группа',
+                'verbose_name_plural': 'Творческие группы'
+            },
         ),
         migrations.AlterModelOptions(
             name='play',
-            options={'ordering': ('title',), 'verbose_name': 'Спектакль', 'verbose_name_plural': 'Спектакли'},
+            options={
+                'ordering': ('title',),
+                'verbose_name': 'Спектакль',
+                'verbose_name_plural': 'Спектакли'
+            },
         ),
     ]

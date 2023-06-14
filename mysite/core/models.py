@@ -73,10 +73,6 @@ class Actor(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.second_name}'
 
-    def clean(self):
-        if self.plays is None:
-            raise ValidationError('Plays cannot be None')
-
     class Meta:
         verbose_name = 'Актер'
         verbose_name_plural = 'Актеры'
