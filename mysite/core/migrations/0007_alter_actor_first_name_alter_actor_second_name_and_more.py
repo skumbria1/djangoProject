@@ -14,16 +14,39 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='actor',
             name='first_name',
-            field=models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(code='invalid_data', message='Поле должно содержать только буквы', regex='^[a-zA-Z]*$')], verbose_name='Имя'),
+            field=models.CharField(
+                max_length=255,
+                validators=[django.core.validators.RegexValidator(
+                    code='invalid_data',
+                    message='Поле должно содержать только буквы',
+                    regex='^[a-zA-Z]*$'
+                )
+                ],
+                verbose_name='Имя'
+            ),
         ),
         migrations.AlterField(
             model_name='actor',
             name='second_name',
-            field=models.CharField(max_length=255, validators=[django.core.validators.RegexValidator(code='invalid_data', message='Поле должно содержать только буквы', regex='^[a-zA-Z]*$')], verbose_name='Фамилия'),
+            field=models.CharField(
+                max_length=255,
+                validators=[django.core.validators.RegexValidator(
+                    code='invalid_data',
+                    message='Поле должно содержать только буквы',
+                    regex='^[a-zA-Z]*$'
+                )
+                ],
+                verbose_name='Фамилия'
+            ),
         ),
         migrations.AlterField(
             model_name='actorid',
             name='number',
-            field=models.IntegerField(primary_key=True, serialize=False, unique=True, validators=[django.core.validators.MinValueValidator(0)], verbose_name='Номер'),
+            field=models.IntegerField(
+                primary_key=True,
+                serialize=False,
+                unique=True,
+                validators=[django.core.validators.MinValueValidator(0)],
+                verbose_name='Номер'),
         ),
     ]
