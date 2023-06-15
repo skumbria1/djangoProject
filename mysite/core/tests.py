@@ -99,7 +99,7 @@ class ActorTest(TestCase):
         )
 
     def test_actor_delete(self):
-        response = self.client.post(
+        response = self.client.delete(
             reverse('core:actor_delete', args=(self.actor.pk,)), follow=True,
         )
         self.assertEqual(response.status_code, 200)
