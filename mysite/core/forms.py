@@ -1,13 +1,7 @@
 from django import forms
-from django.core.validators import RegexValidator
-
+from core.field_validators import ONLY_LETTERS_VALIDATOR
 from core import models
 
-ONLY_LETTERS_VALIDATOR = RegexValidator(
-    regex=r'^[a-zA-Z]*$',
-    message='Поле должно содержать только буквы',
-    code='invalid_data'
-)
 
 GENDER_CHOICES = (
     (None, 'Не выбрано'),
@@ -22,7 +16,7 @@ class ActorSearch(forms.Form):
         required=False,
         max_length=255,
         validators=[
-            ONLY_LETTERS_VALIDATOR,
+            [ONLY_LETTERS_VALIDATOR],
         ],
     )
     second_name = forms.CharField(
@@ -30,7 +24,7 @@ class ActorSearch(forms.Form):
         required=False,
         max_length=255,
         validators=[
-            ONLY_LETTERS_VALIDATOR,
+            [ONLY_LETTERS_VALIDATOR],
         ],
     )
     gender = forms.ChoiceField(

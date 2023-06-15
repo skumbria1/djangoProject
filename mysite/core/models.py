@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from core.field_validators import ONLY_LETTERS_VALIDATOR
 
 
 class CreativeTeam(models.Model):
@@ -27,8 +29,9 @@ class Play(models.Model):
 
 
 class ActorId(models.Model):
-    number = models.CharField(
-        'Номер', max_length=255, unique=True, primary_key=True
+    number = models.IntegerField(
+        'Номер', unique=True, primary_key=True,
+        validators=[MinValueValidator(0)]
     )
     photo = models.CharField('Фото', max_length=255, null=True)
 
@@ -46,8 +49,12 @@ class Actor(models.Model):
         ('M', 'Мужской'),
         ('F', 'Женский'),
     )
-    first_name = models.CharField('Имя', max_length=255)
-    second_name = models.CharField('Фамилия', max_length=255)
+    first_name = models.CharField(
+        'Имя', max_length=255, validators=[ONLY_LETTERS_VALIDATOR]
+    )
+    second_name = models.CharField(
+        'Фамилия', max_length=255, validators=[ONLY_LETTERS_VALIDATOR]
+    )
     gender = models.CharField(
         'Пол',
         max_length=255,
