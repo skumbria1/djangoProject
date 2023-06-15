@@ -22,7 +22,7 @@ class PlayFactory(factory.django.DjangoModelFactory):
 
 
 class ActorIdFactory(factory.django.DjangoModelFactory):
-    number = str(factory_en.random_int(min=115, max=150))
+    number = factory_en.random_int(min=115, max=150)
     photo = factory_en.word()
 
     class Meta:
